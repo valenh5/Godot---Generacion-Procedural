@@ -1,0 +1,11 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1746369017
+::res://escenas/::1746368961
+world.tscn::PackedScene::4411153118867253420::1746368961::0::1::::<><>::uid://clgedvedwm116::::res://objetos/player.tscn<>uid://h7y2shu6vpmm::::res://recursos/minecraft_tile_set_by_game_boy09_d3fzh91-fullview.jpg<>res://scripts/world.gd
+::res://objetos/::1746368961
+player.tscn::PackedScene::5557554248617476507::1746368961::0::1::::<><>::res://scripts/player.gd
+::res://recursos/::1746310998
+minecraft_tile_set_by_game_boy09_d3fzh91-fullview.jpg::CompressedTexture2D::558888375042878392::1746310996::1746310998::1::::<><>::
+::res://scripts/::1746368961
+player.gd::GDScript::-1::1746321993::0::1::::<>CharacterBody2D<>::
+world.gd::GDScript::-1::1746368961::0::1::::<>TileMapLayer<>::
