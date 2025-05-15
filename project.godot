@@ -17,3 +17,4 @@ config/features=PackedStringArray("4.3", "Mobile")
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.651217, 0.90023, 0.998249, 1)

@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	chunkPos = Vector2(position.x / (tilemap.chunk_size * 20), position.y / (tilemap.chunk_size * 20))
 
 	if prevchunkPos != chunkPos:
-		tilemap.generateWorld(chunkPos)
+		tilemap.updateChunk(chunkPos)
 		prevchunkPos = chunkPos
 
 	# Aplicar gravedad

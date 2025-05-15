@@ -1,2 +1,3 @@
 res://escenas/world.tscn
+res://objetos/player.tscn
 res://scripts/world.gd
