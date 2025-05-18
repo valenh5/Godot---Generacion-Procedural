@@ -77,7 +77,7 @@ func unloadChunk(chunk_pos) :
 
 func generateWorld(chunk_pos : Vector2):
 	var start_x = chunk_pos.x * chunk_size
-	var base_height = 10  
+	var base_height = 5
 
 	for x in range(start_x, start_x + chunk_size):
 		var height_variation = noise.get_noise_2d(x, 0) * 5

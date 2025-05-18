@@ -1,3 +1,7 @@
+TextureRect
+Button
+VBoxContainer
+ColorRect
 WorldEnvironment
 TileMapLayer
 Camera2D
