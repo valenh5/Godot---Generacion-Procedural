@@ -1,6 +1,6 @@
-TextureRect
 Button
 VBoxContainer
+TextureRect
 ColorRect
 WorldEnvironment
 TileMapLayer

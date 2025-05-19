@@ -7,6 +7,7 @@ var chunk_cant : int = 2
 
 var chunk_status : Dictionary = {}
 var chunk_data : Dictionary = {}
+var next_mountain = randi_range(30, 60)
 
 var tree_offset = randi_range(0, 8)
 var next_tree = tree_offset
@@ -78,6 +79,8 @@ func unloadChunk(chunk_pos) :
 func generateWorld(chunk_pos : Vector2):
 	var start_x = chunk_pos.x * chunk_size
 	var base_height = 5
+	var mountain_spacing = 5
+	var mountain_height = randi_range(10, 20)
 
 	for x in range(start_x, start_x + chunk_size):
 		var height_variation = noise.get_noise_2d(x, 0) * 5
@@ -87,11 +90,22 @@ func generateWorld(chunk_pos : Vector2):
 		set_cell(Vector2(x, terrain_height), 0, PASTO_TILE)
 
 
+
+
 		for y in range(terrain_height + 1, terrain_height + chunk_size):  
 			set_cell(Vector2(x, y), 0, TIERRA_TILE)
-
 		
-		if x == next_tree:
+		if x == next_mountain:
+			next_mountain += randi_range(40, 80)  
+			var mountain_top = terrain_height - mountain_height
+
+			for i in range(mountain_height):
+				var width = mountain_height - i
+				for j in range(-width, width + 1):    
+					set_cell(Vector2(x + j, terrain_height - i), 0, TIERRA_TILE)
+			set_cell(Vector2(x, mountain_top), 0, PASTO_TILE)
+
+		if x == next_tree and (x < next_mountain - mountain_height or x > next_mountain + mountain_height):
 			next_tree += randi_range(5, 15)
 			var tree_top = terrain_height - TRONCO_ALTURA
 
