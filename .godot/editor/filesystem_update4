@@ -2,5 +2,6 @@ res://escenas/world.tscn
 res://objetos/player.tscn
 res://escenas/menu.tscn
 res://escenas/configuracion.tscn
-res://scripts/configuracion.gd
 res://scripts/world.gd
+res://scripts/configuracion.gd
+res://scripts/Global.gd

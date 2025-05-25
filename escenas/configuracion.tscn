@@ -12,7 +12,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_sd87l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="cont1" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -25,8 +25,66 @@ offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Aceptar" type="Button" parent="VBoxContainer"]
+[node name="Aceptar" type="Button" parent="cont1"]
 layout_mode = 2
 text = "Aceptar"
 
-[connection signal="pressed" from="VBoxContainer/Aceptar" to="." method="_on_aceptar_pressed"]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 543.5
+offset_top = 299.0
+offset_right = 612.5
+offset_bottom = 299.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -98.5
+offset_top = -130.0
+offset_right = 72.5
+offset_bottom = -107.0
+text = "Generacion Montañas"
+
+[node name="OptionButton" type="OptionButton" parent="Control"]
+layout_mode = 0
+offset_left = 85.5
+offset_top = -133.0
+offset_right = 176.5
+offset_bottom = -102.0
+item_count = 3
+popup/item_0/text = "Poca"
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Mucha"
+popup/item_2/id = 2
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 543.5
+offset_top = 299.0
+offset_right = 612.5
+offset_bottom = 299.0
+
+[node name="Label" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = -100.5
+offset_top = -95.0
+offset_right = 70.5
+offset_bottom = -54.0
+text = "Generacion Arboles"
+
+[node name="OptionButton" type="OptionButton" parent="Control2"]
+layout_mode = 0
+offset_left = 86.5
+offset_top = -96.0
+offset_right = 177.5
+offset_bottom = -65.0
+item_count = 3
+popup/item_0/text = "Poca"
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Mucha"
+popup/item_2/id = 2
+
+[connection signal="pressed" from="cont1/Aceptar" to="." method="_on_aceptar_pressed"]
