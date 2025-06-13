@@ -18,17 +18,41 @@ const TIERRA_TILE = Vector2i(2, 0)
 const AGUA_TILE = Vector2i(13, 12)
 const HIERBA_TILE = Vector2i(12, 5)
 
-var tree_spacing : int = 8
-var tree_offset : int = randi_range(0, tree_spacing - 1)  # Aleatorio
+var tree_spacing : int
+var tree_offset : int
+
+var mountain_spacing : int
+var mountain_offset : int
 
 func _ready():
 	print("Montanias elegida:", Global.montania)
+	print("Arbol elegido:", Global.arbol)
+
 	mountain_noise.seed = randi()
 	mountain_noise.frequency = 0.05
 	mountain_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	mountain_noise.fractal_octaves = 3
 
+	var tree_rango = obtener_rango_desde_valor(Global.arbol)
+	tree_spacing = randi_range(tree_rango.x, tree_rango.y)
+	tree_offset = randi_range(0, tree_spacing - 1)
+
+	var montania_rango = obtener_rango_desde_valor(Global.montania)
+	mountain_spacing = randi_range(montania_rango.x, montania_rango.y)
+	mountain_offset = randi_range(0, mountain_spacing - 1)
+
 	generateWorld(Vector2(0, 0))
+
+func obtener_rango_desde_valor(valor: int) -> Vector2i:
+	match valor:
+		1:
+			return Vector2i(1, 5)
+		2:
+			return Vector2i(5, 15)
+		3:
+			return Vector2i(15, 25)
+		_:
+			return Vector2i(5, 15) 
 
 func updateChunk(chunk_pos):
 	for x in range(-chunk_cant, chunk_cant):
@@ -74,10 +98,8 @@ func unloadChunk(chunk_pos):
 	chunk_status[chunk_pos] = false
 
 func colocar_arbol(pos_x: int, pos_y: int):
-	# Tronco
 	for i in range(TRONCO_ALTURA):
 		set_cell(Vector2(pos_x, pos_y - i), 0, TRONCO_TILE)
-	# Hojas (3x3)
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			set_cell(Vector2(pos_x + i, pos_y - TRONCO_ALTURA + j), 0, HOJAS_TILE)
@@ -97,7 +119,7 @@ func generateWorld(chunk_pos : Vector2):
 			set_cell(Vector2(x, y), 0, TIERRA_TILE)
 
 		var mountain_value = mountain_noise.get_noise_2d(x, 0)
-		if abs(x) > protected_range and mountain_value > 0.6:
+		if abs(x) > protected_range and mountain_value > 0.6 and x % mountain_spacing == mountain_offset:
 			var mountain_height = int(remap(mountain_value, 0.6, 1.0, 6, 20))
 			var mountain_top = terrain_height - mountain_height
 			for i in range(mountain_height):
@@ -105,8 +127,7 @@ func generateWorld(chunk_pos : Vector2):
 				for j in range(-width, width + 1):    
 					set_cell(Vector2(x + j, terrain_height - i), 0, TIERRA_TILE)
 			set_cell(Vector2(x, mountain_top), 0, PASTO_TILE)
-			continue  # No árboles en montañas
+			continue
 
-		# Árbol si coincide con patrón espaciado
 		if abs(x) > protected_range and x % tree_spacing == tree_offset:
 			colocar_arbol(x, int(terrain_height))
