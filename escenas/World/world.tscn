@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://b332bu1vifupw"]
+
+[ext_resource type="PackedScene" uid="uid://clgedvedwm116" path="res://objetos/player.tscn" id="1_3ftmb"]
+[ext_resource type="Script" path="res://escenas/World/World.gd" id="1_b3rio"]
+[ext_resource type="PackedScene" uid="uid://oyntk5d2n0j5" path="res://escenas/Chunks/Chunk.tscn" id="2_taeq5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fjlgf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8qpdm"]
+noise = SubResource("FastNoiseLite_fjlgf")
+
+[node name="World" type="Node2D" groups=["world"]]
+script = ExtResource("1_b3rio")
+chunk_scene = ExtResource("2_taeq5")
+noise_texture = SubResource("NoiseTexture2D_8qpdm")
+
+[node name="Player" parent="." instance=ExtResource("1_3ftmb")]
+position = Vector2(386, 284)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)

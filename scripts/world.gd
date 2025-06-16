@@ -45,14 +45,14 @@ func _ready():
 
 func obtener_rango_desde_valor(valor: int) -> Vector2i:
 	match valor:
-		1:
-			return Vector2i(1, 5)
-		2:
-			return Vector2i(5, 15)
 		3:
-			return Vector2i(15, 25)
+			return Vector2i(3, 8)
+		2:
+			return Vector2i(8, 15)
+		1:
+			return Vector2i(15, 35)
 		_:
-			return Vector2i(5, 15) 
+			return Vector2i(8, 15) 
 
 func updateChunk(chunk_pos):
 	for x in range(-chunk_cant, chunk_cant):
@@ -79,8 +79,7 @@ func saveChunks(chunk_pos):
 func loadChunk(chunk_pos):
 	if chunk_status.get(chunk_pos, false) == true:
 		return
-	if chunk_pos in chunk_data:
-		for tile in chunk_data[chunk_pos]:
+	if chunk_pos in chunk_data:		for tile in chunk_data[chunk_pos]:
 			set_cell(tile["pos"], 0, tile["tile"])
 	else:
 		generateWorld(chunk_pos)
@@ -105,6 +104,7 @@ func colocar_arbol(pos_x: int, pos_y: int):
 			set_cell(Vector2i(pos_x + i, pos_y - TRONCO_ALTURA + j), 0, HOJAS_TILE)
 
 func generateWorld(chunk_pos : Vector2i):
+	
 	var start_x = chunk_pos.x * chunk_size
 	var base_height = 5
 	var protected_range = 10
