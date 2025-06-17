@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://oyntk5d2n0j5"]
 
 [ext_resource type="Texture2D" uid="uid://h7y2shu6vpmm" path="res://recursos/minecraft_tile_set_by_game_boy09_d3fzh91-fullview.jpg" id="1_ky2u5"]
-[ext_resource type="Script" path="res://escenas/Chunks/Chunk.gd" id="1_r65re"]
+[ext_resource type="Script" uid="uid://dnida54j2wj0" path="res://escenas/Chunks/Chunk.gd" id="1_r65re"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8a30v"]
 texture = ExtResource("1_ky2u5")

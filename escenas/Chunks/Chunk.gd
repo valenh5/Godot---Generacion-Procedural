@@ -12,14 +12,17 @@ var noise: FastNoiseLite
 var piso := Piso.new()
 var arboles := Arboles.new()
 var montanias := Montanias.new()
+var agua := Agua.new()
 
 func _ready(): 
 	noise = noiseTexture.noise
 
 	piso.setup(tilemap, noise)
 	arboles.setup(tilemap, noise)
+	agua.setup(tilemap, noise)
 	montanias.setup(tilemap, noise, mountain_noise)
 
 	piso.generar(chunk_pos, chunk_size)
 	arboles.generar(chunk_pos, chunk_size)
 	montanias.generar(chunk_pos, chunk_size)
+	agua.generar(chunk_pos, chunk_size)

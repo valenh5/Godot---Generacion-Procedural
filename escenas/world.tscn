@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://clgedvedwm116" path="res://objetos/player.tscn" id="1_3csxd"]
 [ext_resource type="Texture2D" uid="uid://h7y2shu6vpmm" path="res://recursos/minecraft_tile_set_by_game_boy09_d3fzh91-fullview.jpg" id="2_n08go"]
-[ext_resource type="Script" path="res://scripts/world.gd" id="3_bdfh5"]
+[ext_resource type="Script" uid="uid://b0gfxwblc2hun" path="res://scripts/world.gd" id="3_bdfh5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qy2mn"]
 texture = ExtResource("2_n08go")
