@@ -9,8 +9,14 @@ class_name World
 @export var agua_scene: PackedScene
 
 
+
 var noise: FastNoiseLite
 var mountain_noise := FastNoiseLite.new()
+var water_noise: FastNoiseLite
+
+
+
+
 
 var chunk_status: Dictionary = {}
 var chunk_data: Dictionary = {}
@@ -20,14 +26,23 @@ func _ready():
 	print("Arbol elegido:", Global.arbol)
 
 	noise = noise_texture.noise
+	Global.world_noise = noise
+
 
 	mountain_noise.seed = randi()
 	mountain_noise.frequency = 0.05
 	mountain_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	mountain_noise.fractal_octaves = 3
+	water_noise = FastNoiseLite.new()
+	water_noise.seed = randi()
+	water_noise.frequency = 0.03
+	water_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	water_noise.fractal_octaves = 2
+
+
 
 	var center = Vector2i(0, 0)
-	generate_chunks(center)
+	generate_chunks(center, water_noise)
 
 	var player_x = 0
 	var player_chunk_pos = get_chunk_pos_from_world_pos(Vector2(player_x, 0))
@@ -44,14 +59,14 @@ func get_chunk_pos_from_world_pos(world_pos: Vector2) -> Vector2i:
 func get_piso_height(chunk_pos: Vector2i, x_world_pos: float) -> int:
 	return 5 + int(noise.get_noise_2d(int(x_world_pos), 0) * 5)
 
-func generate_chunks(center_chunk: Vector2i):
+func generate_chunks(center_chunk: Vector2i, water_noise: FastNoiseLite):
 	for x in range(-chunk_cant, chunk_cant + 1):
 		for y in range(-chunk_cant, chunk_cant + 1):
 			var pos = center_chunk + Vector2i(x, y)
 			if not chunk_status.has(pos):
-				load_chunk(pos)
+				load_chunk(pos, water_noise)  
 
-func load_chunk(pos: Vector2i):
+func load_chunk(pos: Vector2i, water_noise: FastNoiseLite):
 	var chunk = chunk_scene.instantiate()
 	chunk.chunk_pos = pos
 	chunk.chunk_size = chunk_size
@@ -62,8 +77,8 @@ func load_chunk(pos: Vector2i):
 	var agua = agua_scene.instantiate()
 	agua.chunk_pos = pos
 	agua.chunk_size = chunk_size
-	agua.noise = noise
+	agua.noise = water_noise
 	call_deferred("add_child", agua)
-	agua.call_deferred("init")  # ← Llamás al método `init` después de setear todo
+	agua.call_deferred("init")
 
 	chunk_status[pos] = true

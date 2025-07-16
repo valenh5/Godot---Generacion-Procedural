@@ -39,4 +39,5 @@ func update_chunk_position():
 	if new_chunk_pos != current_chunk_pos:
 		current_chunk_pos = new_chunk_pos
 		print("Jugador entró en chunk:", current_chunk_pos)
-		world.generate_chunks(current_chunk_pos) 
+		world.generate_chunks(current_chunk_pos, world.water_noise)
+ 

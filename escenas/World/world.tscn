@@ -20,4 +20,3 @@ agua_scene = ExtResource("3_25frv")
 position = Vector2(386, 284)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
