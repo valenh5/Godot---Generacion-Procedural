@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b332bu1vifupw"]
+[gd_scene load_steps=7 format=3 uid="uid://b332bu1vifupw"]
 
 [ext_resource type="PackedScene" uid="uid://clgedvedwm116" path="res://objetos/player.tscn" id="1_3ftmb"]
-[ext_resource type="Script" uid="uid://di5aq1otaf2qu" path="res://escenas/World/World.gd" id="1_b3rio"]
+[ext_resource type="Script" path="res://escenas/World/World.gd" id="1_b3rio"]
 [ext_resource type="PackedScene" uid="uid://oyntk5d2n0j5" path="res://escenas/Chunks/Chunk.tscn" id="2_taeq5"]
+[ext_resource type="PackedScene" uid="uid://lulgwjfb7b3s" path="res://escenas/Generadores/Agua/Agua.tscn" id="3_25frv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fjlgf"]
 
@@ -13,6 +14,7 @@ noise = SubResource("FastNoiseLite_fjlgf")
 script = ExtResource("1_b3rio")
 chunk_scene = ExtResource("2_taeq5")
 noise_texture = SubResource("NoiseTexture2D_8qpdm")
+agua_scene = ExtResource("3_25frv")
 
 [node name="Player" parent="." instance=ExtResource("1_3ftmb")]
 position = Vector2(386, 284)

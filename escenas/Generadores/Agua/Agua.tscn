@@ -1,18 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://oyntk5d2n0j5"]
+[gd_scene load_steps=5 format=3 uid="uid://lulgwjfb7b3s"]
 
-[ext_resource type="Texture2D" uid="uid://h7y2shu6vpmm" path="res://recursos/minecraft_tile_set_by_game_boy09_d3fzh91-fullview.jpg" id="1_ky2u5"]
-[ext_resource type="Script" path="res://escenas/Chunks/Chunk.gd" id="1_r65re"]
+[ext_resource type="Script" path="res://escenas/Generadores/Agua/Agua.gd" id="1_hqco1"]
+[ext_resource type="Texture2D" uid="uid://h7y2shu6vpmm" path="res://recursos/minecraft_tile_set_by_game_boy09_d3fzh91-fullview.jpg" id="1_ue70c"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8a30v"]
-texture = ExtResource("1_ky2u5")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydlac"]
+texture = ExtResource("1_ue70c")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
@@ -24,7 +20,6 @@ texture = ExtResource("1_ky2u5")
 12:0/0 = 0
 13:0/0 = 0
 14:0/0 = 0
-14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
@@ -267,12 +262,13 @@ texture = ExtResource("1_ky2u5")
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_h0ly3"]
+[sub_resource type="TileSet" id="TileSet_m1a2n"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_8a30v")
+sources/0 = SubResource("TileSetAtlasSource_ydlac")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_r65re")
+script = ExtResource("1_hqco1")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_h0ly3")
+[node name="TileMapAgua" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_m1a2n")
+format = 2

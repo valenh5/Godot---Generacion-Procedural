@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0ty0qk5rf1my"]
 
-[ext_resource type="Script" uid="uid://djc8vr2rfrbfy" path="res://scripts/configuracion.gd" id="1_ge7d5"]
+[ext_resource type="Script" path="res://scripts/configuracion.gd" id="1_ge7d5"]
 [ext_resource type="Texture2D" uid="uid://dbcttqsaxkn31" path="res://recursos/fotoJuego.jpeg" id="2_sd87l"]
 
 [node name="Configuracion" type="Node2D"]

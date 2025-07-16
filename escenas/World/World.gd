@@ -6,6 +6,8 @@ class_name World
 @export var chunk_cant: int = 2
 @export var noise_texture: NoiseTexture2D
 @onready var player = $Player
+@export var agua_scene: PackedScene
+
 
 var noise: FastNoiseLite
 var mountain_noise := FastNoiseLite.new()
@@ -56,4 +58,12 @@ func load_chunk(pos: Vector2i):
 	chunk.noiseTexture = noise_texture
 	chunk.mountain_noise = mountain_noise
 	call_deferred("add_child", chunk)
+
+	var agua = agua_scene.instantiate()
+	agua.chunk_pos = pos
+	agua.chunk_size = chunk_size
+	agua.noise = noise
+	call_deferred("add_child", agua)
+	agua.call_deferred("init")  # ← Llamás al método `init` después de setear todo
+
 	chunk_status[pos] = true
