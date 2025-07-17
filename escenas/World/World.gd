@@ -6,13 +6,13 @@ class_name World
 @export var chunk_cant: int = 2
 @export var noise_texture: NoiseTexture2D
 @onready var player = $Player
-@export var agua_scene: PackedScene
 
 
 
 var noise: FastNoiseLite
 var mountain_noise := FastNoiseLite.new()
-var water_noise: FastNoiseLite
+var water_noise = FastNoiseLite.new()
+
 
 
 
@@ -27,6 +27,8 @@ func _ready():
 
 	noise = noise_texture.noise
 	Global.world_noise = noise
+	Global.water_noise = water_noise
+
 
 
 	mountain_noise.seed = randi()
@@ -72,13 +74,8 @@ func load_chunk(pos: Vector2i, water_noise: FastNoiseLite):
 	chunk.chunk_size = chunk_size
 	chunk.noiseTexture = noise_texture
 	chunk.mountain_noise = mountain_noise
-	call_deferred("add_child", chunk)
+	chunk.agua_noise = water_noise
 
-	var agua = agua_scene.instantiate()
-	agua.chunk_pos = pos
-	agua.chunk_size = chunk_size
-	agua.noise = water_noise
-	call_deferred("add_child", agua)
-	agua.call_deferred("init")
+	call_deferred("add_child", chunk)
 
 	chunk_status[pos] = true
