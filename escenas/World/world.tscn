@@ -18,4 +18,3 @@ noise_texture = SubResource("NoiseTexture2D_8qpdm")
 position = Vector2(386, 284)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)

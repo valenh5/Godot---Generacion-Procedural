@@ -27,5 +27,10 @@ func generar(chunk_pos: Vector2i, chunk_size: int):
 			for i in range(h):
 				var width = h - i
 				for j in range(-width, width + 1):
-					tilemap.set_cell(Vector2i(x + j, terrain_height - i), 0, TIERRA_TILE)
+					var pos = Vector2i(x + j, terrain_height - i)
+					var current_tile = tilemap.get_cell_atlas_coords(pos)
+
+					if current_tile != Vector2i(1, 0): 
+						tilemap.set_cell(pos, 0, TIERRA_TILE)
+
 			tilemap.set_cell(Vector2i(x, top), 0, PASTO_TILE)
