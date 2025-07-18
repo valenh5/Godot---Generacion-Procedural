@@ -6,11 +6,15 @@ var noise : FastNoiseLite
 var mountain_noise : FastNoiseLite
 const TIERRA_TILE = Vector2i(2, 0)
 const PASTO_TILE = Vector2i(3, 0)
+const AGUA_TILE = Vector2i(14, 0)
+
+var montania_tiles := {}
 
 func setup(tmap, n, m_n):
 	tilemap = tmap
 	noise = n
 	mountain_noise = m_n
+	montania_tiles = {}
 
 func generar(chunk_pos: Vector2i, chunk_size: int):
 	var spacing = randi_range(5, 20)
@@ -29,8 +33,13 @@ func generar(chunk_pos: Vector2i, chunk_size: int):
 				for j in range(-width, width + 1):
 					var pos = Vector2i(x + j, terrain_height - i)
 					var current_tile = tilemap.get_cell_atlas_coords(pos)
-
-					if current_tile != Vector2i(1, 0): 
+					if current_tile != AGUA_TILE:
 						tilemap.set_cell(pos, 0, TIERRA_TILE)
+						montania_tiles[pos] = true
 
-			tilemap.set_cell(Vector2i(x, top), 0, PASTO_TILE)
+			var top_pos = Vector2i(x, top)
+			tilemap.set_cell(top_pos, 0, PASTO_TILE)
+			montania_tiles[top_pos] = true
+
+func es_montania(pos: Vector2i) -> bool:
+	return montania_tiles.has(pos)

@@ -3,13 +3,15 @@ class_name Arboles
 
 var tilemap : TileMapLayer
 var noise : FastNoiseLite
+var montanias_ref
 const TRONCO_TILE = Vector2i(4, 1)
 const HOJAS_TILE = Vector2i(2, 9)
 const TRONCO_ALTURA = 4
 
-func setup(tmap, n):
+func setup(tmap, n, montanias_obj):
 	tilemap = tmap
 	noise = n
+	montanias_ref = montanias_obj
 
 func generar(chunk_pos: Vector2i, chunk_size: int):
 	var tree_rango = obtener_rango(Global.arbol)
@@ -20,7 +22,27 @@ func generar(chunk_pos: Vector2i, chunk_size: int):
 	for x in range(start_x, start_x + chunk_size):
 		var height = 5 + noise.get_noise_2d(x, 0) * 5
 		if abs(x) > 10 and x % spacing == offset:
-			colocar_arbol(x, int(height))
+			var puede_colocar := true
+
+
+			for i in range(TRONCO_ALTURA):
+				var tronco_pos = Vector2i(x, int(height) - i)
+				if montanias_ref.es_montania(tronco_pos):
+					puede_colocar = false
+					break
+
+
+			if puede_colocar:
+				for i in range(-1, 2):
+					for j in range(-1, 2):
+						var hoja_pos = Vector2i(x + i, int(height) - TRONCO_ALTURA + j)
+						if montanias_ref.es_montania(hoja_pos):
+							puede_colocar = false
+							break
+
+
+			if puede_colocar:
+				colocar_arbol(x, int(height))
 
 func colocar_arbol(x: int, y: int):
 	for i in range(TRONCO_ALTURA):

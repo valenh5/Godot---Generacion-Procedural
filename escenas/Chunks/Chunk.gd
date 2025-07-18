@@ -19,14 +19,14 @@ func _ready():
 	noise = noiseTexture.noise
 
 	piso.setup(tilemap, noise)
-	arboles.setup(tilemap, noise)
 	montanias.setup(tilemap, noise, mountain_noise)
 	lagunas.setup(tilemap, agua_noise)
+	arboles.setup(tilemap, noise, montanias)
 
 	piso.generar(chunk_pos, chunk_size)
 
-	lagunas.setup(tilemap, agua_noise)
 	if lagunas.should_generate(chunk_pos):
 		lagunas.generar(chunk_pos, chunk_size)
+
 	montanias.generar(chunk_pos, chunk_size)
 	arboles.generar(chunk_pos, chunk_size)
